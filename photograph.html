@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographs - Elegance Photography</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Elegant and Standard Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #9D7A4D; /* Elegant Gold/Tan */
+            --secondary-dark: #2D2D2D; /* Dark Text */
+            --light-bg: #FFFFFF; /* White Background */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--secondary-dark);
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-gold);
+        }
+        .text-dark {
+            color: var(--secondary-dark);
+        }
+        .nav-link:hover {
+            color: var(--primary-gold);
+        }
+        .nav-dropdown-item:hover {
+            background-color: #f7f7f7;
+            color: var(--primary-gold);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigation Bar (Consistent Design) -->
+    <nav class="border-b border-gray-100 shadow-sm bg-white sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-3xl font-extrabold tracking-widest serif-title text-dark">E L E G A N C E</a>
+                </div>
+                <div class="flex items-center space-x-6 text-sm font-medium">
+                    <!-- Nav Links -->
+                    <a href="indexpage.html" class="nav-link text-dark transition duration-150">Home</a>
+                    <a href="gallery.html" class="nav-link text-dark transition duration-150" style="color: var(--primary-gold); border-bottom: 2px solid var(--primary-gold);">Photographs</a>
+                    
+                    <!-- Events Dropdown -->
+                    <div class="relative group">
+                        <a href="events.html" class="nav-link text-dark flex items-center transition duration-150">
+                            Events
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block transition duration-200" style="z-index: 20;">
+                            <div class="py-1">
+                                <a href="events.html" class="block px-4 py-2 nav-dropdown-item text-dark">Upcoming</a>
+                                <a href="events.html#past" class="block px-4 py-2 nav-dropdown-item text-dark">Past Events</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Us Dropdown -->
+                    <div class="relative group">
+                        <a href="about.html" class="nav-link text-dark flex items-center transition duration-150">
+                            About Us
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block transition duration-200" style="z-index: 20;">
+                            <div class="py-1">
+                                <a href="about.html#mission" class="block px-4 py-2 nav-dropdown-item text-dark">Our Mission</a>
+                                <a href="about.html#team" class="block px-4 py-2 nav-dropdown-item text-dark">Meet the Team</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="nav-link text-dark transition duration-150">Blog</a>
+                    <a href="#" class="nav-link text-dark transition duration-150">Contact</a>
+                    
+                    <!-- Bell Icon (Notification/Contact) -->
+                    <button class="text-dark hover:text-opacity-80 transition duration-150">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area: Gallery -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Consistent Title Section -->
+        <header class="text-center mb-10 max-w-4xl mx-auto">
+            <h1 class="serif-title text-5xl sm:text-6xl font-extrabold mb-4">Our Full Portfolio</h1>
+            <p class="text-lg sm:text-xl text-dark leading-relaxed">
+                Explore the breadth of our work, from intimate couple portraits to grand traditional ceremonies.
+            </p>
+        </header>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Gallery Item 1: Traditional Wedding -->
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl cursor-pointer">
+                <img src="WhatsApp%20Image%202025-11-21%20at%2012.16.44%20PM%20(1).jpeg" 
+                     alt="Traditional Wedding" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4D4D4/808080?text=Traditional+Wedding'"
+                     class="w-full h-80 object-cover">
+                <div class="p-4 bg-white text-center">
+                    <p class="text-lg font-semibold text-dark">Traditional Wedding</p>
+                    <p class="text-sm text-gray-500">Documenting every sacred moment.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2: Haldi Ceremony -->
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl cursor-pointer">
+                <img src="WhatsApp%20Image%202025-11-21%20at%2012.16.42%20PM%20(2).jpeg" 
+                     alt="Haldi Ceremony" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4D4D4/808080?text=Haldi+Ceremony'"
+                     class="w-full h-80 object-cover">
+                <div class="p-4 bg-white text-center">
+                    <p class="text-lg font-semibold text-dark">Haldi Ceremony</p>
+                    <p class="text-sm text-gray-500">Joyful, vibrant, and candid captures.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3: Couple Portrait -->
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl cursor-pointer">
+                <img src="WhatsApp%20Image%202025-11-21%20at%2012.16.42%20PM%20(1).jpeg" 
+                     alt="Couple Portrait" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4D4D4/808080?text=Couple+Portrait'"
+                     class="w-full h-80 object-cover">
+                <div class="p-4 bg-white text-center">
+                    <p class="text-lg font-semibold text-dark">Romantic Couple Portrait</p>
+                    <p class="text-sm text-gray-500">Fine art outdoor sessions.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 4: Blue Dress Photoshoot -->
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl cursor-pointer">
+                <img src="WhatsApp%20Image%202025-11-21%20at%2012.16.45%20PM.jpeg" 
+                     alt="Blue Dress Photoshoot" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4D4D4/808080?text=Elegant+Portrait'"
+                     class="w-full h-80 object-cover">
+                <div class="p-4 bg-white text-center">
+                    <p class="text-lg font-semibold text-dark">Blue Dress Elegant Portrait</p>
+                    <p class="text-sm text-gray-500">Stunning studio and outdoor shots.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 5: Child Portrait -->
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl cursor-pointer">
+                <img src="WhatsApp%20Image%202025-11-21%20at%2012.16.45%20PM%20(2).jpeg" 
+                     alt="Child Portrait" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4D4D4/808080?text=Child+Portrait'"
+                     class="w-full h-80 object-cover">
+                <div class="p-4 bg-white text-center">
+                    <p class="text-lg font-semibold text-dark">Candid Child Photography</p>
+                    <p class="text-sm text-gray-500">Fun and playful sessions.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 6: Save the Date Silhouette -->
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl cursor-pointer">
+                <img src="WhatsApp%20Image%202025-11-21%20at%2012.16.44%20PM.jpeg" 
+                     alt="Save the Date" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4D4D4/808080?text=Save+the+Date'"
+                     class="w-full h-80 object-cover">
+                <div class="p-4 bg-white text-center">
+                    <p class="text-lg font-semibold text-dark">Save the Date Silhouette</p>
+                    <p class="text-sm text-gray-500">Creative pre-wedding shoots.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-12 text-center">
+            <button class="inline-block px-8 py-3 text-lg font-semibold rounded-full transition duration-300 border-2 hover:bg-gray-50" style="color: var(--primary-gold); border-color: var(--primary-gold);">
+                Load More Albums
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-100 mt-auto">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            <p>&copy; 2025 Elegance Photography. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

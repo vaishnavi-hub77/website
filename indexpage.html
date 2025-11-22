@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance - Premium Wedding Photography & Stories</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Define custom fonts and colors */
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+        .font-sans-inter { font-family: 'Inter', sans-serif; }
+
+        /* Custom Slideshow Styling */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; /* Smooth transition for fading */
+            z-index: 0; /* Ensures images are behind the content */
+            filter: brightness(0.9); /* Slightly darkens the image for text readability */
+        }
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Fixed Navigation Bar */
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Ensure content doesn't get hidden behind the fixed nav */
+        #hero-section {
+            padding-top: 80px; /* Adjust based on navbar height */
+            height: 100vh;
+            min-height: 700px;
+        }
+
+        /* Utility classes for consistency and JS manipulation */
+        .menu-item {
+             @apply text-primary-charcoal hover:text-primary-gold transition duration-200 text-lg font-medium;
+        }
+
+        /* Portfolio Image Hover Effect */
+        .portfolio-item-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .portfolio-item-container:hover .portfolio-overlay {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-gold': '#B8860B', /* Dark Goldenrod */
+                        'primary-cream': '#FAF9F6', /* Creamy White */
+                        'primary-charcoal': '#2D2D2D',
+                        'accent-soft': '#F3E5AB',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-cream font-sans-inter text-primary-charcoal">
+
+    <!-- Fixed Navigation Bar -->
+    <nav id="navbar" class="navbar-fixed bg-primary-cream/90 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-3xl font-serif-display font-bold text-primary-gold tracking-widest">
+                        E L E G A N C E
+                    </a>
+                </div>
+
+                <!-- Desktop Menu (UPDATED ORDER AND DROPDOWN) -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero-section" class="menu-item">Home</a>
+                    
+                    <!-- NEW: Photographs Link -->
+                    <a href="photograph.html" class="menu-item">Photographs</a>
+
+                    <!-- Events Dropdown (NESTED DROPDOWN FOR WEDDING) -->
+                    <div class="relative group" id="events-dropdown-menu">
+                        <a href="events.html"><button class="menu-item flex items-center focus:outline-none" id="events-dropdown-button" aria-expanded="false">
+                            Events
+                            <i data-lucide="chevron-down" class="w-4 h-4 ml-1 transition-transform duration-200" id="events-chevron"></i>
+                        </button></a>
+                        <!-- Dropdown Content (Level 1) -->
+                        <div id="events-dropdown-content" class="absolute hidden top-full mt-2 -left-4 w-60 rounded-lg shadow-2xl bg-white border border-primary-gold/30 overflow-visible z-20 group-hover:block">
+                            
+                            <!-- Wedding Sub-Menu Trigger (Level 2) -->
+                            <div class="relative group/sub">
+                                <a href="#" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm flex justify-between items-center">
+                                    Wedding
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </a>
+                                <!-- Wedding Sub-Menu Content -->
+                                <div class="absolute hidden left-full top-0 ml-1 w-52 rounded-lg shadow-2xl bg-white border border-primary-gold/30 overflow-hidden z-30 group-hover/sub:block">
+                                    <a href="#wedding-traditional" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Traditional Wedding</a>
+                                    <a href="#wedding-destination" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Destination Wedding</a>
+                                </div>
+                            </div>
+
+                            <a href="#birthdays" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Birthdays</a>
+                            <a href="#cradle" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Cradle Ceremony</a>
+                            <a href="#milestones" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Monthly Milestone Captions</a>
+                            <a href="#baby-shower" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Baby Shower</a>
+                            <a href="#half-saree" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Half Saree Ceremony</a>
+                        </div>
+                    </div>
+
+                    <!-- About Us Dropdown -->
+                    <div class="relative group" id="about-dropdown-menu">
+                        <a href="aboutus.html"><button class="menu-item flex items-center focus:outline-none" id="about-dropdown-button" aria-expanded="false">
+                            About Us
+                            <i data-lucide="chevron-down" class="w-4 h-4 ml-1 transition-transform duration-200" id="about-chevron"></i>
+                        </button></a>
+                        <!-- Dropdown Content -->
+                        <div id="about-dropdown-content" class="absolute hidden top-full mt-2 -left-4 w-52 rounded-lg shadow-2xl bg-white border border-primary-gold/30 overflow-hidden z-20 group-hover:block">
+                            <a href="#faqs" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">FAQs</a>
+                            <a href="#testimonials" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Testimonials</a>
+                            <a href="#packages" class="block px-4 py-2 text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200 text-sm">Packages (Prices)</a>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="menu-item">Blog</a>
+                    <a href="#contact-footer" class="menu-item">Contact</a>
+
+                    <!-- Notification Icon -->
+                    <button class="p-2 rounded-full hover:bg-accent-soft transition duration-200">
+                        <i data-lucide="bell" class="w-6 h-6 text-primary-gold"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="p-2 rounded-full hover:bg-accent-soft transition duration-200 mr-2" aria-label="Notifications">
+                        <i data-lucide="bell" class="w-6 h-6 text-primary-gold"></i>
+                    </button>
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-primary-charcoal hover:text-primary-gold hover:bg-accent-soft focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-gold" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon when menu is closed -->
+                        <i id="menu-icon-open" data-lucide="menu" class="block h-6 w-6"></i>
+                        <!-- Icon when menu is open -->
+                        <i id="menu-icon-close" data-lucide="x" class="hidden h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (UPDATED ORDER AND LINKS) -->
+        <div class="md:hidden hidden bg-primary-cream/95 pb-4" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero-section" class="block px-3 py-2 rounded-md text-base font-medium text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold">Home</a>
+                
+                <!-- NEW: Photographs Mobile Link -->
+                <a href="#photography-section" class="block px-3 py-2 rounded-md text-base font-medium text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold">Photographs</a>
+
+                <!-- Events Links (Expanded for mobile readability) -->
+                <span class="block px-3 py-2 text-base font-semibold text-primary-gold/80 mt-2">Events</span>
+                <a href="#wedding-traditional" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Traditional Wedding</a>
+                <a href="#wedding-destination" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Destination Wedding</a>
+                <a href="#birthdays" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Birthdays</a>
+                <a href="#cradle" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Cradle Ceremony</a>
+                <a href="#milestones" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Monthly Milestone Captions</a>
+                <a href="#baby-shower" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Baby Shower</a>
+                <a href="#half-saree" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Half Saree Ceremony</a>
+                
+                <!-- About Us Links (Expanded for mobile readability) -->
+                <span class="block px-3 py-2 text-base font-semibold text-primary-gold/80 mt-2">About Us</span>
+                <a href="#faqs" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">FAQs</a>
+                <a href="#testimonials" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Testimonials</a>
+                <a href="#packages" class="block px-6 py-1 rounded-md text-sm font-normal text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold transition duration-200">Packages (Prices)</a>
+
+                <a href="#blog" class="block px-3 py-2 rounded-md text-base font-medium text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold">Blog</a>
+                <a href="#contact-footer" class="block px-3 py-2 rounded-md text-base font-medium text-primary-charcoal hover:bg-accent-soft hover:text-primary-gold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Background Slideshow & Content -->
+    <header id="hero-section" class="relative overflow-hidden w-full flex items-center justify-center text-center">
+        <!-- Slideshow Images -->
+        <div id="slideshow-container" class="absolute inset-0">
+            <!-- You can add your favorite image links here to replace the placeholders -->
+            <div class="slide active" style="background-image: url('https://placehold.co/1920x1080/7F7F7F/FFFFFF?text=Elegant+Couple+1');"></div>
+            <div class="slide" style="background-image: url('https://placehold.co/1920x1080/8A8A8A/FFFFFF?text=Romantic+Scenery+2');"></div>
+            <div class="slide" style="background-image: url('https://placehold.co/1920x1080/969696/FFFFFF?text=Intimate+Moment+3');"></div>
+            <div class="slide" style="background-image: url('https://placehold.co/1920x1080/A3A3A3/FFFFFF?text=Wedding+Details+4');"></div>
+        </div>
+
+        <!-- Hero Overlay Content -->
+        <div class="relative z-10 p-6 md:p-12 max-w-4xl backdrop-blur-sm bg-primary-charcoal/30 rounded-lg shadow-2xl">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif-display font-bold text-primary-cream leading-tight">
+                Your Story, Told with Elegance
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl font-sans-inter text-accent-soft font-light">
+                Capturing the timeless moments and genuine emotion of your most cherished day.
+            </p>
+            <a href="#photography-section" class="mt-8 inline-block px-8 py-3 text-lg font-semibold rounded-full bg-primary-gold text-primary-charcoal hover:bg-accent-soft transition duration-300 transform hover:scale-105 shadow-xl">
+                View Portfolio
+            </a>
+        </div>
+    </header>
+
+    <main class="py-16 md:py-24">
+        <!-- Section 1: Welcome -->
+        <section id="welcome" class="max-w-5xl mx-auto px-4 text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-serif-display text-primary-gold font-bold mb-4">
+                Welcome to Elegance Photography
+            </h2>
+            <p class="text-lg md:text-xl text-primary-charcoal/80 max-w-3xl mx-auto leading-relaxed">
+                We believe in preserving the authenticity of your love story. Our style is a blend of fine art and candid photojournalism, ensuring every look, every tear, and every joyous dance is documented beautifully. Let us craft your legacy.
+            </p>
+        </section>
+
+        <!-- NEW: Photographs Portfolio Section -->
+        <section id="photography-section" class="max-w-7xl mx-auto px-4 mt-12 scroll-mt-24">
+            <h2 class="text-center text-4xl font-serif-display text-primary-charcoal font-bold mb-12">
+                Featured Photography Portfolio
+            </h2>
+
+            <!-- Image Grid with Hover Effect -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- Portfolio Item 1: Traditional Wedding -->
+                <div class="portfolio-item-container aspect-square">
+                    <img src="WhatsApp Image 2025-11-21 at 12.16.44 PM (1).jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x600/C0C0C0/FFFFFF?text=Traditional+Wedding';" alt="Traditional Wedding Photography" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <a href="#wedding-traditional" class="portfolio-overlay">
+                        <div class="text-primary-cream p-4">
+                            <h3 class="text-2xl font-serif-display font-bold mb-2">Temple Wedding Story</h3>
+                            <p class="text-sm font-light">Capturing the sacred moments and traditional attire.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Portfolio Item 2: Haldi Ceremony -->
+                <div class="portfolio-item-container aspect-square">
+                    <img src="WhatsApp Image 2025-11-21 at 12.16.44 PM (2).jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x600/C0C0C0/FFFFFF?text=Haldi+Ceremony';" alt="Haldi Ceremony Photography" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <a href="#haldi" class="portfolio-overlay">
+                        <div class="text-primary-cream p-4">
+                            <h3 class="text-2xl font-serif-display font-bold mb-2">Joyful Haldi Moments</h3>
+                            <p class="text-sm font-light">Vibrant colors and contagious happiness during the ceremony.</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Portfolio Item 3: Couple Portrait -->
+                <div class="portfolio-item-container aspect-square">
+                    <img src="WhatsApp Image 2025-11-21 at 12.16.42 PM (1).jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x600/C0C0C0/FFFFFF?text=Couple+Portrait';" alt="Romantic Couple Portrait" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <a href="#portraits" class="portfolio-overlay">
+                        <div class="text-primary-cream p-4">
+                            <h3 class="text-2xl font-serif-display font-bold mb-2">Intimate Portraits</h3>
+                            <p class="text-sm font-light">Natural light, genuine connection, and serene settings.</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Portfolio Item 4: Save the Date -->
+                <div class="portfolio-item-container aspect-square">
+                    <img src="WhatsApp Image 2025-11-21 at 12.16.44 PM.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x600/C0C0C0/FFFFFF?text=Save+the+Date';" alt="Save the Date Announcement" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <a href="#savethedate" class="portfolio-overlay">
+                        <div class="text-primary-cream p-4">
+                            <h3 class="text-2xl font-serif-display font-bold mb-2">Save the Date</h3>
+                            <p class="text-sm font-light">Creative silhouettes for your official announcement.</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Item 5: Destination (Placeholder for user's custom link) -->
+                <div class="portfolio-item-container aspect-square">
+                    <img src="https://placehold.co/600x600/A3A3A3/FFFFFF?text=Destination+Wedding" alt="Placeholder for Destination Wedding" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <a href="#wedding-destination" class="portfolio-overlay">
+                        <div class="text-primary-cream p-4">
+                            <h3 class="text-2xl font-serif-display font-bold mb-2">Exotic Locales</h3>
+                            <p class="text-sm font-light">Photography packages for your destination wedding.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Item 6: Baby/Milestone (Placeholder for user's custom link) -->
+                <div class="portfolio-item-container aspect-square">
+                    <img src="WhatsApp Image 2025-11-21 at 12.16.45 PM (2).jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x600/B0B0B0/FFFFFF?text=Baby+Shoot';" alt="Placeholder for Baby Shoot" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                    <a href="#milestones" class="portfolio-overlay">
+                        <div class="text-primary-cream p-4">
+                            <h3 class="text-2xl font-serif-display font-bold mb-2">Milestone Captures</h3>
+                            <p class="text-sm font-light">From cradle to first birthday, celebrating growth.</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+        <!-- END: Photographs Portfolio Section -->
+
+        <!-- Section 2: Services Preview (now focused on events) -->
+        <section id="services" class="max-w-7xl mx-auto px-4 mt-20">
+            <h2 class="text-center text-4xl font-serif-display text-primary-charcoal font-bold mb-12">
+                More Event Collections
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Cradle Ceremony -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-2xl transform hover:-translate-y-1">
+                    <img src="https://placehold.co/600x400/C0C0C0/FFFFFF?text=Cradle+Ceremony" alt="Cradle Ceremony Photography" class="w-full h-56 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-serif-display text-primary-gold font-semibold mb-2">Cradle Ceremony</h3>
+                        <p class="text-sm text-primary-charcoal/70">Delicate moments captured for the naming ceremony.</p>
+                        <button class="mt-4 text-sm font-semibold text-primary-gold border border-primary-gold px-4 py-2 rounded-full hover:bg-primary-gold hover:text-primary-cream transition duration-300">Inquire</button>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Half Saree Ceremony -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-2xl transform hover:-translate-y-1">
+                    <img src="https://placehold.co/600x400/D0D0D0/FFFFFF?text=Half+Saree+Event" alt="Half Saree Ceremony Photography" class="w-full h-56 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-serif-display text-primary-gold font-semibold mb-2">Half Saree/Langa Voni</h3>
+                        <p class="text-sm text-primary-charcoal/70">Celebrating the transition to young womanhood.</p>
+                        <button class="mt-4 text-sm font-semibold text-primary-gold border border-primary-gold px-4 py-2 rounded-full hover:bg-primary-gold hover:text-primary-cream transition duration-300">Inquire</button>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Birthday Parties -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-2xl transform hover:-translate-y-1">
+                    <img src="https://placehold.co/600x400/E0E0E0/FFFFFF?text=Birthday+Parties" alt="Birthday Party Photography" class="w-full h-56 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-serif-display text-primary-gold font-semibold mb-2">Birthday Parties</h3>
+                        <p class="text-sm text-primary-charcoal/70">Vibrant and fun coverage for all milestone birthdays.</p>
+                        <button class="mt-4 text-sm font-semibold text-primary-gold border border-primary-gold px-4 py-2 rounded-full hover:bg-primary-gold hover:text-primary-cream transition duration-300">Inquire</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact-footer" class="bg-primary-charcoal text-primary-cream py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                
+                <!-- Logo & Mission -->
+                <div class="md:col-span-1">
+                    <h3 class="text-3xl font-serif-display font-bold text-primary-gold mb-4">ELEGANCE</h3>
+                    <p class="text-sm font-light leading-relaxed">
+                        Crafting timeless visual legacies for the discerning client. Based in Paris, available worldwide.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-accent-soft mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#photography-section" class="hover:text-primary-gold transition duration-200">Our Photographs</a></li>
+                        <li><a href="#events-dropdown-menu" class="hover:text-primary-gold transition duration-200">Events List</a></li>
+                        <li><a href="#blog" class="hover:text-primary-gold transition duration-200">The Blog</a></li>
+                        <li><a href="#packages" class="hover:text-primary-gold transition duration-200">Packages & Prices</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-accent-soft mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-4 h-4 mr-2 text-primary-gold"></i>
+                            <a href="mailto:info@elegance.com" class="hover:text-primary-gold transition duration-200">info@elegance.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-4 h-4 mr-2 text-primary-gold"></i>
+                            <a href="tel:+1234567890" class="hover:text-primary-gold transition duration-200">+1 (234) 567-890</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 mt-1 flex-shrink-0 text-primary-gold"></i>
+                            <span>123 Royal Lane, 75001 Paris, France</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="md:col-span-1">
+                    <h4 class="text-lg font-semibold text-accent-soft mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" class="text-primary-cream hover:text-primary-gold transition duration-300 rounded-full p-2 border border-primary-cream hover:border-primary-gold" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="text-primary-cream hover:text-primary-gold transition duration-300 rounded-full p-2 border border-primary-cream hover:border-primary-gold" aria-label="Facebook">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="text-primary-cream hover:text-primary-gold transition duration-300 rounded-full p-2 border border-primary-cream hover:border-primary-gold" aria-label="Twitter">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="text-primary-cream hover:text-primary-gold transition duration-300 rounded-full p-2 border border-primary-cream hover:border-primary-gold" aria-label="YouTube">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-primary-gold/30 text-center text-sm text-primary-cream/70">
+                &copy; <span id="current-year"></span> Elegance Photography. All rights reserved. | Crafted with Love.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Image Slideshow Logic (No change)
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                slide.style.zIndex = (i === index) ? 1 : 0;
+            });
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Start the automatic slideshow (changes every 5 seconds)
+        setInterval(nextSlide, 5000); 
+        
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(0);
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Setup dropdown listeners after DOM is loaded
+            setupDropdowns();
+        });
+
+
+        // 2. Mobile Menu Toggle Logic (No change)
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isMenuOpen = mobileMenu.classList.toggle('hidden');
+            if (isMenuOpen) {
+                // Menu closed, show open icon
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            } else {
+                // Menu open, show close icon
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            }
+        });
+        
+        // 3. Scroll-Based Navbar Style Change (Optional Enhancement - No change)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-primary-cream');
+                navbar.classList.remove('bg-primary-cream/90');
+            } else {
+                navbar.classList.remove('bg-primary-cream');
+                navbar.classList.add('bg-primary-cream/90');
+            }
+        });
+
+        // 4. Dropdown Logic (UPDATED FOR NESTED DROPDOWNS - using CSS hover now for simplicity)
+        
+        // This function is still used for mobile menu (which uses a standard click/toggle)
+        // For the desktop view, the 'group' and 'group-hover' Tailwind classes handle the opening/closing.
+        function setupDropdowns() {
+            // These event listeners are kept mainly to handle closing the OTHER dropdown
+            // when one is opened, and for setting initial state/ARIAA attributes.
+            
+            const eventsButton = document.getElementById('events-dropdown-button');
+            const aboutButton = document.getElementById('about-dropdown-button');
+            const eventsContent = document.getElementById('events-dropdown-content');
+            const aboutContent = document.getElementById('about-dropdown-content');
+
+            // --- Desktop Click Handlers (Fallbacks/Initial Setup) ---
+
+            // The main visibility is handled by CSS group-hover, but we can set up 
+            // a click handler for better accessibility and to close the other menu.
+            
+            eventsButton.addEventListener('click', (e) => {
+                // If clicked, we still want to toggle the aria-expanded state for accessibility
+                // and potentially close the other menu if CSS hover fails or for better UX.
+                e.preventDefault(); 
+                e.stopPropagation();
+
+                // Close the About Us dropdown
+                if (!aboutContent.classList.contains('hidden')) {
+                     aboutContent.classList.add('hidden');
+                     aboutButton.setAttribute('aria-expanded', 'false');
+                     document.getElementById('about-chevron').style.transform = 'rotate(0deg)';
+                }
+                
+                // Toggle the Events dropdown visibility (if not handled by hover)
+                const isExpanded = eventsContent.classList.toggle('hidden');
+                eventsButton.setAttribute('aria-expanded', !isExpanded);
+                document.getElementById('events-chevron').style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+
+            aboutButton.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                e.stopPropagation();
+                
+                // Close the Events dropdown
+                if (!eventsContent.classList.contains('hidden')) {
+                     eventsContent.classList.add('hidden');
+                     eventsButton.setAttribute('aria-expanded', 'false');
+                     document.getElementById('events-chevron').style.transform = 'rotate(0deg)';
+                }
+
+                // Toggle the About Us dropdown visibility (if not handled by hover)
+                const isExpanded = aboutContent.classList.toggle('hidden');
+                aboutButton.setAttribute('aria-expanded', !isExpanded);
+                document.getElementById('about-chevron').style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', () => {
+                if (!eventsContent.classList.contains('hidden')) {
+                    eventsContent.classList.add('hidden');
+                    eventsButton.setAttribute('aria-expanded', 'false');
+                    document.getElementById('events-chevron').style.transform = 'rotate(0deg)';
+                }
+                if (!aboutContent.classList.contains('hidden')) {
+                    aboutContent.classList.add('hidden');
+                    aboutButton.setAttribute('aria-expanded', 'false');
+                    document.getElementById('about-chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Elegance Photography</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Elegant and Standard Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #9D7A4D; /* Elegant Gold/Tan */
+            --secondary-dark: #2D2D2D; /* Dark Text */
+            --light-bg: #FFFFFF; /* White Background */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--secondary-dark);
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-gold);
+        }
+        .text-dark {
+            color: var(--secondary-dark);
+        }
+        .nav-link:hover {
+            color: var(--primary-gold);
+        }
+        .nav-dropdown-item:hover {
+            background-color: #f7f7f7;
+            color: var(--primary-gold);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigation Bar (Consistent Design) -->
+    <nav class="border-b border-gray-100 shadow-sm bg-white sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-3xl font-extrabold tracking-widest serif-title text-dark">E L E G A N C E</a>
+                </div>
+                <div class="flex items-center space-x-6 text-sm font-medium">
+                    <!-- Nav Links -->
+                    <a href="indexpage.html" class="nav-link text-dark transition duration-150">Home</a>
+                    <a href="gallery.html" class="nav-link text-dark transition duration-150">Photographs</a>
+                    
+                    <!-- Events Dropdown -->
+                    <div class="relative group">
+                        <a href="events.html" class="nav-link text-dark flex items-center transition duration-150">
+                            Events
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block transition duration-200" style="z-index: 20;">
+                            <div class="py-1">
+                                <a href="events.html" class="block px-4 py-2 nav-dropdown-item text-dark">Upcoming</a>
+                                <a href="events.html#past" class="block px-4 py-2 nav-dropdown-item text-dark">Past Events</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Us Dropdown -->
+                    <div class="relative group">
+                        <a href="about.html" class="nav-link text-dark flex items-center transition duration-150" style="color: var(--primary-gold); border-bottom: 2px solid var(--primary-gold);">
+                            About Us
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block transition duration-200" style="z-index: 20;">
+                            <div class="py-1">
+                                <a href="about.html#mission" class="block px-4 py-2 nav-dropdown-item text-dark">Our Mission</a>
+                                <a href="about.html#team" class="block px-4 py-2 nav-dropdown-item text-dark">Meet the Team</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="blog.html" class="nav-link text-dark transition duration-150">Blog</a>
+                    <a href="#" class="nav-link text-dark transition duration-150">Contact</a>
+                    
+                    <!-- Bell Icon (Notification/Contact) -->
+                    <button class="text-dark hover:text-opacity-80 transition duration-150">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area: About Us -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Consistent Title Section -->
+        <header class="text-center mb-10 max-w-4xl mx-auto">
+            <h1 class="serif-title text-5xl sm:text-6xl font-extrabold mb-4">The Elegance Story</h1>
+            <p class="text-lg sm:text-xl text-dark leading-relaxed">
+                Our studio is built on a passion for capturing genuine human connection and timeless beauty.
+            </p>
+        </header>
+
+        <section id="mission" class="mb-16 max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-dark mb-5 serif-title border-b pb-2" style="border-color: var(--primary-gold);">Our Mission & Philosophy</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-lg text-gray-700">
+                <p class="leading-relaxed">
+                    Elegance Photography was founded with the belief that the most beautiful photographs are the ones that tell an authentic story. We move beyond simple poses to capture the real, unscripted moments—the laughter, the quiet glances, and the deep emotion of your special day.
+                </p>
+                <p class="leading-relaxed">
+                    Our philosophy combines the precision of fine art photography with the emotional depth of photojournalism. We commit to a limited number of bookings each year to ensure every client receives our full attention and a truly personalized experience, resulting in heirloom-quality images.
+                </p>
+            </div>
+            
+            <div class="mt-8 text-center">
+                 <img src="https://placehold.co/1000x300/F5F5DC/9D7A4D?text=Our+Studio+Focus" 
+                      alt="Studio Focus Placeholder" 
+                      class="w-full rounded-xl shadow-lg border border-gray-200">
+            </div>
+        </section>
+
+        <section id="team" class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-dark mb-8 serif-title border-b pb-2" style="border-color: var(--primary-gold);">Meet the Elegance Team</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="text-center p-6 bg-gray-50 rounded-xl shadow-md">
+                    <img src="https://placehold.co/150x150/9D7A4D/FFFFFF?text=Lead+Photographer" 
+                         alt="Team Member 1" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg">
+                    <p class="font-bold text-xl text-dark">Ravi Sharma</p>
+                    <p class="text-sm" style="color: var(--primary-gold);">Lead Photographer & Founder</p>
+                    <p class="text-sm text-gray-600 mt-2">Specializes in candid wedding and fine art portraits.</p>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="text-center p-6 bg-gray-50 rounded-xl shadow-md">
+                    <img src="https://placehold.co/150x150/9D7A4D/FFFFFF?text=Creative+Director" 
+                         alt="Team Member 2" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg">
+                    <p class="font-bold text-xl text-dark">Anjali Menon</p>
+                    <p class="text-sm" style="color: var(--primary-gold);">Creative Director & Editor</p>
+                    <p class="text-sm text-gray-600 mt-2">Expert in post-production and album design.</p>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="text-center p-6 bg-gray-50 rounded-xl shadow-md">
+                    <img src="https://placehold.co/150x150/9D7A4D/FFFFFF?text=Studio+Manager" 
+                         alt="Team Member 3" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg">
+                    <p class="font-bold text-xl text-dark">Vivek Patil</p>
+                    <p class="text-sm" style="color: var(--primary-gold);">Studio Manager & Second Shooter</p>
+                    <p class="text-sm text-gray-600 mt-2">Handles logistics and videography coordination.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-100 mt-auto">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            <p>&copy; 2025 Elegance Photography. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
