@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Booking - Elegance Photography</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Theme Colors */
+        .color-gold { color: #C7A760; }
+        .bg-gold { background-color: #C7A760; }
+        .bg-gold-light { background-color: #FAF4E8; }
+        .border-gold { border-color: #C7A760; }
+        .hover-text-gold:hover { color: #C7A760; }
+        
+        /* Fonts */
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc;
+        }
+
+        /* Form styling */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            margin-top: 0.25rem;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #C7A760;
+            ring: 1px solid #C7A760;
+        }
+    </style>
+</head>
+<body class="font-body min-h-screen flex flex-col relative">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b border-gray-100 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href=".html" class="flex-shrink-0">
+                    <span class="font-display text-4xl font-extrabold tracking-widest uppercase color-gold">ELEGANCE</span>
+                </a>
+                
+                <!-- Desktop Menu Items -->
+                <div class="hidden md:flex md:space-x-8 items-center">
+                    <a href="indexpage.html" class="text-gray-600 font-medium hover-text-gold transition duration-150 py-2">Home</a>
+                    <a href="photograph.html" class="text-gray-600 font-medium hover-text-gold transition duration-150 py-2">Photographs</a>
+                    <a href="events.html" class="text-gray-600 font-medium hover-text-gold transition duration-150 py-2">Events</a>
+                    <a href="aboutus.html" class="text-gray-600 font-medium hover-text-gold transition duration-150 py-2">About Us</a>
+                    <a href="blog.html" class="text-gray-600 font-medium hover-text-gold transition duration-150 py-2">Blog</a>
+                    <a href="contact.html" class="text-gray-900 font-medium hover-text-gold transition duration-150 py-2 border-b-2 border-gray-900">Contact</a>
+                </div>
+
+                <!-- Bell Icon -->
+                <div class="hidden md:flex items-center">
+                    <button class="p-1 rounded-full text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i data-lucide="bell" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full">
+        <!-- Header Section -->
+        <div class="bg-gold-light py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="font-display text-5xl md:text-6xl font-black color-gold mb-6">Get in Touch</h1>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto font-light">
+                    We would be honored to be a part of your journey. Reach out to us for inquiries or book a consultation slot directly.
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-start">
+            
+            <!-- Left Side: Contact Information -->
+            <div class="space-y-10">
+                <div>
+                    <h2 class="font-display text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-gold-light p-3 rounded-full mr-4">
+                                <i data-lucide="phone" class="w-6 h-6 color-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Phone</p>
+                                <p class="text-lg text-gray-900 font-medium">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-gold-light p-3 rounded-full mr-4">
+                                <i data-lucide="mail" class="w-6 h-6 color-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Email</p>
+                                <p class="text-lg text-gray-900 font-medium">hello@elegancephotography.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-gold-light p-3 rounded-full mr-4">
+                                <i data-lucide="map-pin" class="w-6 h-6 color-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Studio Address</p>
+                                <p class="text-lg text-gray-900 font-medium">123 Heritage Lane, Suite 400<br>Paris, France 75001</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="bg-gray-900 text-white p-8 rounded-xl shadow-xl text-center">
+                    <h3 class="font-display text-2xl font-bold mb-4">Ready to Create Magic?</h3>
+                    <p class="text-gray-300 mb-8 font-light">Slots for the upcoming season are filling up fast. Reserve your date today.</p>
+                    <button onclick="toggleModal()" class="bg-gold hover:bg-yellow-600 text-white font-semibold py-4 px-8 rounded-md transition duration-300 w-full text-lg shadow-lg transform hover:-translate-y-1">
+                        Book a Slot
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Decorative Image -->
+            <div class="hidden md:block h-full min-h-[500px] relative rounded-xl overflow-hidden shadow-2xl">
+                 <img src="https://placehold.co/800x1000/F3E5AB/C7A760?text=Elegance+Studio" alt="Studio Interior" class="absolute inset-0 w-full h-full object-cover">
+            </div>
+        </div>
+    </main>
+
+    <!-- Booking Modal (Hidden by default) -->
+    <div id="booking-modal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="toggleModal()"></div>
+
+        <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
+            <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg w-full">
+                
+                <!-- Modal Header -->
+                <div class="bg-gold-light px-4 py-5 sm:px-6 flex justify-between items-center border-b border-gray-200">
+                    <h3 class="text-xl leading-6 font-display font-bold text-gray-900" id="modal-title">
+                        Book Your Slot
+                    </h3>
+                    <button onclick="toggleModal()" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="px-4 py-5 sm:p-6">
+                    <form class="space-y-4">
+                        <!-- Name -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe">
+                        </div>
+
+                        <!-- Contact Info Row -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                                <input type="tel" id="contact" name="contact" class="form-input" placeholder="+1 (555) 000-0000">
+                            </div>
+                            <div>
+                                <label for="alt-contact" class="block text-sm font-medium text-gray-700">Alternate Number</label>
+                                <input type="tel" id="alt-contact" name="alt-contact" class="form-input" placeholder="Optional">
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div>
+                            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                            <textarea id="address" name="address" rows="2" class="form-input" placeholder="Your residential address"></textarea>
+                        </div>
+
+                        <!-- Event Type Dropdown -->
+                        <div>
+                            <label for="event-type" class="block text-sm font-medium text-gray-700">Type of Event</label>
+                            <select id="event-type" name="event-type" class="form-input bg-white" onchange="handleEventChange()">
+                                <option value="" disabled selected>Select an event...</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="cradle">Cradle Ceremony</option>
+                                <option value="baby-shower">Baby Shower</option>
+                                <option value="half-saree">Half Saree Ceremony</option>
+                                <option value="pre-wedding">Pre-Wedding</option>
+                            </select>
+                        </div>
+
+                        <!-- Conditional: Pre-Wedding Location -->
+                        <div id="location-container" class="hidden animate-fade-in-down">
+                            <label for="location-select" class="block text-sm font-medium text-gray-700 color-gold font-bold">Select Location Preference</label>
+                            <select id="location-select" name="location-select" class="form-input bg-white border-gold" onchange="handleLocationChange()">
+                                <option value="" disabled selected>Choose a backdrop...</option>
+                                <option value="dams">Dams / Waterfront</option>
+                                <option value="garden">Botanical Garden</option>
+                                <option value="custom">Custom Location</option>
+                            </select>
+                        </div>
+
+                        <!-- Conditional: Custom Location Input -->
+                        <div id="custom-location-container" class="hidden animate-fade-in-down">
+                            <label for="custom-location-text" class="block text-sm font-medium text-gray-700">Enter Custom Location</label>
+                            <input type="text" id="custom-location-text" name="custom-location-text" class="form-input border-gold" placeholder="e.g. City Palace, Private Estate">
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-3 bg-gray-900 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:text-lg transition duration-200">
+                                Confirm Booking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-100 mt-auto">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2025 Elegance Photography. Crafting Legacies.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // 1. Modal Toggle Logic
+        function toggleModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // 2. Handle Event Type Change
+        function handleEventChange() {
+            const eventType = document.getElementById('event-type').value;
+            const locationContainer = document.getElementById('location-container');
+            const locationSelect = document.getElementById('location-select');
+            const customContainer = document.getElementById('custom-location-container');
+
+            // If "Pre-wedding" is selected, show location dropdown
+            if (eventType === 'pre-wedding') {
+                locationContainer.classList.remove('hidden');
+            } else {
+                // Hide location logic if user changes mind
+                locationContainer.classList.add('hidden');
+                customContainer.classList.add('hidden');
+                locationSelect.value = ""; // Reset selection
+            }
+        }
+
+        // 3. Handle Location Selection Change
+        function handleLocationChange() {
+            const locationValue = document.getElementById('location-select').value;
+            const customContainer = document.getElementById('custom-location-container');
+
+            // If "Custom Location" is selected, show text input
+            if (locationValue === 'custom') {
+                customContainer.classList.remove('hidden');
+            } else {
+                customContainer.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
